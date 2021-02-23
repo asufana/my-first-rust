@@ -1,13 +1,12 @@
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Name {
-    value: String
+    value: String,
 }
 
 impl Name {
     pub fn new(value: &str) -> Self {
         Self {
-            value: value.to_string()
+            value: value.to_string(),
         }
     }
 }
@@ -29,5 +28,3 @@ mod tests {
         assert_eq!(name1, name2);
     }
 }
-
-
