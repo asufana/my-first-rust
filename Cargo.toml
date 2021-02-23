@@ -5,3 +5,6 @@ authors = ["hana <asufanah@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+regex = "1.4.3"
+anyhow = "1.0"
+thiserror = "1.0"
