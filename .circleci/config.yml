@@ -3,6 +3,7 @@ executors:
   default:
     docker:
       - image: circleci/rust:latest
+
 jobs:
   lint:
     executor: 'default'
@@ -10,8 +11,9 @@ jobs:
       - 'checkout'
       - run: 'rustup component add rustfmt'
       - run: 'cargo fmt -- --check'
+
 workflows:
   version: 2
   test:
     jobs:
-      -- 'lint'
+      -- lint
