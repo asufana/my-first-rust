@@ -1,0 +1,24 @@
+version: 2.1
+executors:
+  default:
+    docker:
+      - image: circleci/rust:latest
+
+jobs:
+  lint:
+    executor: default
+    steps:
+      - checkout
+      - run: 'rustup component add rustfmt'
+      - run: 'cargo fmt -- --check'
+  test:
+    executor: default
+    steps:
+      - checkout
+      - run: 'cargo test'
+workflows:
+  version: 2
+  test:
+    jobs:
+      - lint
+      - test
