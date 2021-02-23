@@ -35,11 +35,11 @@ mod tests {
     use crate::user::vo::name::tests::{name1, name2};
     use crate::user::vo::userid::tests::{userid1, userid2};
 
-    fn user1() -> User {
+    pub fn user1() -> User {
         User::new(userid1(), name1()).unwrap()
     }
 
-    fn user2() -> User {
+    pub fn user2() -> User {
         User::new(userid2(), name2()).unwrap()
     }
 
