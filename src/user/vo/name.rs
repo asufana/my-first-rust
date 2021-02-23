@@ -1,4 +1,5 @@
 use crate::common::error::MyError;
+use crate::common::validation::VoValidation;
 use anyhow::{bail, Result};
 use regex::Regex;
 
@@ -9,14 +10,19 @@ pub struct Name {
 
 impl Name {
     pub fn new(value: &str) -> Result<Self> {
-        let regex = Regex::new(r#"^[0-9a-zA-Z]+$"#).unwrap();
-        if regex.is_match(value) {
+        if Self::regex().is_match(value) {
             Ok(Self {
                 value: value.to_string(),
             })
         } else {
             bail!(MyError::ValidationError("Invalid Format".to_string()))
         }
+    }
+}
+
+impl VoValidation for Name {
+    fn regex() -> Regex {
+        Regex::new(r#"^[0-9a-zA-Z]+$"#).unwrap()
     }
 }
 
