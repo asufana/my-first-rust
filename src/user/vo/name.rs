@@ -27,7 +27,7 @@ impl VoValidation for Name {
 }
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use crate::user::vo::name::Name;
 
     pub fn name1() -> Name {
