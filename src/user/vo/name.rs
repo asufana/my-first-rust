@@ -1,3 +1,5 @@
+use crate::common::error::MyError;
+use anyhow::{bail, Result};
 use regex::Regex;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -6,14 +8,14 @@ pub struct Name {
 }
 
 impl Name {
-    pub fn new(value: &str) -> Self {
+    pub fn new(value: &str) -> Result<Self> {
         let regex = Regex::new(r#"^[0-9a-zA-Z]+$"#).unwrap();
         if regex.is_match(value) {
-            Self {
+            Ok(Self {
                 value: value.to_string(),
-            }
+            })
         } else {
-            panic!("invalid format")
+            bail!(MyError::ValidationError("Invalid Format".to_string()))
         }
     }
 }
@@ -23,11 +25,11 @@ mod tests {
     use crate::user::vo::name::Name;
 
     pub fn name1() -> Name {
-        Name::new("name1")
+        Name::new("name1").unwrap()
     }
 
     pub fn name2() -> Name {
-        Name::new("name2")
+        Name::new("name2").unwrap()
     }
 
     #[test]
@@ -43,8 +45,11 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected = "invalid format")]
     fn name_validation() {
-        Name::new("Invalid@@@Name");
+        //生成できること
+        assert!(Name::new("InvalidName01").is_ok());
+
+        //バリデーションエラーとなること
+        assert!(Name::new("InvalidName01!!!").is_err());
     }
 }
