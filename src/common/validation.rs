@@ -1,8 +1,11 @@
 use regex::Regex;
 
 pub trait VoValidation {
+    //バリデーション定義
     fn regex() -> Regex;
-    fn validation(value: &str) -> bool {
+
+    //バリデーション実施
+    fn validate(value: &str) -> bool {
         Self::regex().is_match(value)
     }
 }

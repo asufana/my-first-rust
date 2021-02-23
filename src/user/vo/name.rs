@@ -10,7 +10,7 @@ pub struct Name {
 
 impl Name {
     pub fn new(value: &str) -> Result<Self> {
-        if Self::regex().is_match(value) {
+        if Self::validate(value) {
             Ok(Self {
                 value: value.to_string(),
             })
