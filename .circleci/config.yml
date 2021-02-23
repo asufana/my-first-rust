@@ -6,14 +6,19 @@ executors:
 
 jobs:
   lint:
-    executor: 'default'
+    executor: default
     steps:
-      - 'checkout'
+      - checkout
       - run: 'rustup component add rustfmt'
       - run: 'cargo fmt -- --check'
-
+  test:
+    executor: default
+    steps:
+      - checkout
+      - run: 'cargo test'
 workflows:
   version: 2
   test:
     jobs:
       - lint
+      - test
