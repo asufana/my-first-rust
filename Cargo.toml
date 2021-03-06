@@ -8,3 +8,6 @@ edition = "2018"
 regex = "1.4.3"
 anyhow = "1.0"
 thiserror = "1.0"
+dotenv = "0.14.1"
+diesel = { version = "1.4.1", features = ["sqlite"] }
+diesel-derive-newtype = "0.1.2"
